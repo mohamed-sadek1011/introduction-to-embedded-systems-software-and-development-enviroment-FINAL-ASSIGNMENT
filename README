@@ -1,0 +1,6 @@
+#to test the code through make here are the commands that will help you
+
+make build PLATFORM=HOST SELECT=COURSE1 VER=enable
+
+
+

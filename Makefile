@@ -25,11 +25,28 @@
 # Platform Overrides:
 #      PLATFORM - (MSP432, HOST)
 #
+# Course Select:
+#      COURSE - (COURSE1, )
+#
+# Verbose enable
+#      VER - (enable, )
 #------------------------------------------------------------------------------
 include sources.mk
 
 OBJECTS:= $(SOURCES:.c=.o)
-Target:=exe
+Target:=Course1
+
+
+Default:= -DCOURSE1
+ifeq ($(VER),enable)
+v= -DVERBOSE
+endif
+
+ifeq (SELECT,COURSE1)
+COURSE:= -DCOURSE1
+else
+COURSE:= $(Default)
+endif
 
 # Platform Overrides
 ifeq ($(PLATFORM),MSP432)
@@ -45,7 +62,7 @@ CC = arm-none-eabi-gcc
 LD = arm-none-eabi-ld
 LDFLAGS = -Wl,-Map=$(Target).map -Wl,$(LINKER_FILE)
 CFLAGS = -Wall -g -O0 -std=c99 $(CPU) $(ARCH) $(SPECS) $(INCLUDES)
-CPPFLAGS = -DMSP432 
+CPPFLAGS = -DMSP432 $(COURSE) $(v)
 
 else
 
@@ -54,8 +71,8 @@ else
 CC = gcc
 LD = ld
 LDFLAGS = -Wl,-Map=$(Target).map
-CFLAGS = -Wall -g -O0 -std=c99 $(INCLUDES)
-CPPFLAGS = -DHOST -DCOURSE1 -DVERBOSE
+CFLAGS = -Wall -Werror -g -O0 -std=c99 $(INCLUDES)
+CPPFLAGS = $(v) -DHOST $(COURSE) 
 
 endif
 

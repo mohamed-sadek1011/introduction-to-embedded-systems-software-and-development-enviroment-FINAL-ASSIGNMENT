@@ -27,14 +27,13 @@ uint8_t udecimal_to_string ( uint32_t num, uint8_t* ptr, uint32_t base )
     {
         
         if ( (num % base) >=10)
-        {
-          *ptr = (num % base) + 55;
+        { // the remainder of diving by the base number is the required number for the ne base number
+          *ptr = (num % base) + 55; // to get A B C D E and F ASCII
         }
         else
         {
-          *ptr = (num % base) + 48;
+          *ptr = (num % base) + 48;// to get 0 1 2 3 4 5 6 7 8 and 9 ASCII
         }
-          PRINTF(" %d",*ptr);
         ptr--;
         length++;
         num = num/base;
@@ -85,7 +84,6 @@ uint8_t my_itoa( int32_t data, uint8_t *ptr, uint32_t base )
   else 
   {
     u_data =  (uint32_t) data;
-    PRINTF ("udata is %x\n",u_data); 
     length += udecimal_to_string(u_data,ptr,base);
   }
   return length;

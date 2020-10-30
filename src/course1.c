@@ -137,7 +137,6 @@ int8_t test_memmove2() {
 
   if (! set )
   {
-    PRINTF("fail 4\n");
     return TEST_ERROR;
   }
   ptra = &set[0];
@@ -157,7 +156,6 @@ int8_t test_memmove2() {
     if (set[i + 8] != i)
     {
       ret = TEST_ERROR;
-     PRINTF("A");
     }
   }
 
@@ -177,7 +175,6 @@ int8_t test_memmove3() {
 
   if (! set ) 
   {
-    PRINTF("fail 5\n");
     return TEST_ERROR;
   }
   ptra = &set[8];
@@ -198,7 +195,6 @@ int8_t test_memmove3() {
     if (set[i] != (i + 8))
     {
       ret = TEST_ERROR;
-PRINTF("B");
     }
   }
 
@@ -239,7 +235,6 @@ int8_t test_memcopy() {
     if (set[i+16] != i)
     {
       ret = TEST_ERROR;
-PRINTF("KDFGKG");
     }
   }
 
@@ -259,7 +254,6 @@ int8_t test_memset()
   set = (uint8_t*)reserve_words(MEM_SET_SIZE_W);
   if (! set )
   {
-    PRINTF("fail 6\n");
     return TEST_ERROR;
   }
   ptra = &set[0];
@@ -283,12 +277,10 @@ int8_t test_memset()
     if (set[i] != 0xFF)
     {
       ret = TEST_ERROR;
-PRINTF("FDGDFG");
     }
     if (set[16 + i] != 0)
     {
       ret = TEST_ERROR;
-PRINTF("DFGDFG");
     }
   }
   
@@ -311,7 +303,6 @@ int8_t test_reverse()
   copy = (uint8_t*)reserve_words(MEM_SET_SIZE_W);
   if (! copy )
   {
-    PRINTF("fail 8\n");
     return TEST_ERROR;
   }
   
@@ -359,17 +350,4 @@ void course1(void)
   PRINTF("  FAILED: %d / %d\n", failed, TESTCOUNT);
   PRINTF("--------------------------------\n");
   
-  void course1(void)
-  {
-    test_data1();
-    test_data2();
-    test_memmove1();
-    test_memmove2();
-    test_memmove3();
-    test_memcopy();
-    test_memset();
-    test_reverse();
-
-  }
-
 }

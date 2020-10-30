@@ -62,7 +62,7 @@ uint8_t* my_memmove( uint8_t* src, uint8_t* dst, size_t length)
   }
 
   else if ( (dest > source) && (dest-source < (int)length) ) 
-  {
+  { // start from high to low to avoit overwriting
     source += (length-1);
     dest += (length-1);
     for ( uint8_t i = 0 ; i<length ; i++)
@@ -75,9 +75,9 @@ uint8_t* my_memmove( uint8_t* src, uint8_t* dst, size_t length)
   }
   
   else if ( (source > dest) && (source-dest) )
-  {
+  { // start from low to high to avoid overwriting
     for (uint8_t i = 0 ; i<length ; i++)
-    {
+    { 
       *dest = *source;
       dest++;
       source++;
@@ -85,7 +85,7 @@ uint8_t* my_memmove( uint8_t* src, uint8_t* dst, size_t length)
     return dst;
   } 
   else
-  {
+  { // just copy like memcopy because no overlap
     my_memcopy(src,dst,length);
     return dst;
   } 

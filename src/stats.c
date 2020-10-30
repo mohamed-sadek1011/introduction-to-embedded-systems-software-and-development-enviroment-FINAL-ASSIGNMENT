@@ -18,11 +18,8 @@
  *
  */
 
-
-
 #include "platform.h"
 #include "stats.h"
-
 
 void print_statistics (unsigned char minimum,unsigned char maximum,unsigned char mean, unsigned char median)
 {
